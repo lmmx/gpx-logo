@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX Sparkling Stars Logo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.4.0/tsparticles.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000022;
+            overflow: hidden;
+        }
+        #tsparticles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .logo-text {
+            position: absolute;
+            bottom: 20px;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div>
+    <div class="logo-text">GPX</div>
+
+    <script>
+	    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize tsParticles directly with your configuration
+        tsParticles.load("tsparticles", {
+            particles: {
+                number: {
+                    value: 4,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#FFD700"
+                },
+                shape: {
+                    type: "star",
+                    options: {
+                        star: {
+                            sides: 4,
+                            inset: 2
+                        }
+                    }
+                },
+                opacity: {
+                    value: 0.8,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 50,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: false
+                },
+                move: {
+                    enable: true,
+                    speed: 0.5,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 1
+                    }
+                }
+            },
+            retina_detect: true
+        });
+			});
+    </script>
+</body>
+</html>
+
