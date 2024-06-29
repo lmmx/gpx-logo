@@ -3,127 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPX Sparkling Stars Logo</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.4.0/tsparticles.min.js"></script>
+    <title>GPX Star Logo</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
             background-color: #000022;
-            overflow: hidden;
-        }
-        #tsparticles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-        .logo-text {
-            position: absolute;
-            bottom: 20px;
-            color: #FFFFFF;
+            margin: 0;
             font-family: Arial, sans-serif;
-            font-size: 48px;
-            font-weight: bold;
-            z-index: 10;
+        }
+        .star-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 70%;
         }
     </style>
 </head>
 <body>
-    <div id="tsparticles"></div>
-    <div class="logo-text">GPX</div>
+    <div class="star-container" id="star-container">
+        <!-- Stars will be inserted here -->
+    </div>
 
     <script>
-	    document.addEventListener('DOMContentLoaded', function () {
-        // Initialize tsParticles directly with your configuration
-        tsParticles.load("tsparticles", {
-            particles: {
-                number: {
-                    value: 4,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: "#FFD700"
-                },
-                shape: {
-                    type: "star",
-                    options: {
-                        star: {
-                            sides: 4,
-                            inset: 2
-                        }
-                    }
-                },
-                opacity: {
-                    value: 0.8,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 50,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: false
-                },
-                move: {
-                    enable: true,
-                    speed: 0.5,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "repulse"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    },
-                    push: {
-                        particles_nb: 1
-                    }
-                }
-            },
-            retina_detect: true
+        // Function to create a four-pointed star SVG
+        function createStarSVG(size, fill) {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svg.setAttribute("viewBox", "0 0 36 36");
+
+            const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path1.setAttribute("fill", fill);
+            path1.setAttribute("d", "M34.347 16.893l-8.899-3.294-3.323-10.891c-.128-.42-.517-.708-.956-.708-.439 0-.828.288-.956.708l-3.322 10.891-8.9 3.294c-.393.146-.653.519-.653.938 0 .418.26.793.653.938l8.895 3.293 3.324 11.223c.126.424.516.715.959.715.442 0 .833-.291.959-.716l3.324-11.223 8.896-3.293c.391-.144.652-.518.652-.937 0-.418-.261-.792-.653-.938z");
+
+            const path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path2.setAttribute("fill", fill);
+            path2.setAttribute("d", "M14.347 27.894l-2.314-.856-.9-3.3c-.118-.436-.513-.738-.964-.738-.451 0-.846.302-.965.737l-.9 3.3-2.313.856c-.393.145-.653.52-.653.938 0 .418.26.793.653.938l2.301.853.907 3.622c.112.444.511.756.97.756.459 0 .858-.312.97-.757l.907-3.622 2.301-.853c.393-.144.653-.519.653-.937 0-.418-.26-.793-.653-.937zM10.009 6.231l-2.364-.875-.876-2.365c-.145-.393-.519-.653-.938-.653-.418 0-.792.26-.938.653l-.875 2.365-2.365.875c-.393.146-.653.52-.653.938 0 .418.26.793.653.938l2.365.875.875 2.365c.146.393.52.653.938.653.418 0 .792-.26.938-.653l.875-2.365 2.365-.875c.393-.146.653-.52.653-.938 0-.418-.26-.792-.653-.938z");
+
+            svg.appendChild(path1);
+            svg.appendChild(path2);
+
+            return svg;
+        }
+
+        // Function to create the star logos
+        function createStars(container, size, fill) {
+            for (let i = 0; i < 3; i++) {
+                const starSVG = createStarSVG(size, fill);
+                starSVG.setAttribute("width", size);
+                starSVG.setAttribute("height", size);
+                container.appendChild(starSVG);
+            }
+        }
+
+        // Create stars on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const starContainer = document.getElementById("star-container");
+            createStars(starContainer, 100, "#FFAC33"); // Adjust size and fill color here
         });
-			});
     </script>
 </body>
 </html>
